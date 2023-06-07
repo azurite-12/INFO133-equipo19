@@ -3,10 +3,11 @@ Base de datos de prensa Nicaragüense
 
 Integrantes:
 
-Miguel Ormeño.
+-Miguel Ormeño.
 
-Diego Vidal.
+-Diego Vidal.
 
+(Grupo 19).
 
 Descripción
 ==============
