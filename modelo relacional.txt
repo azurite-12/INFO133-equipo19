@@ -1,0 +1,19 @@
+Prensa (PK_nombrePrensa, FK_ejemploURL sitio_web, fundación);
+
+Fundador (PK_nombreFundadores);
+
+Red_Social (PK_nombreRed, seguidores, actualización);
+
+Cobertura (PK_tipo);
+
+Categoría (PK_nombreCat, URL_Ej, URL_Pr, XPATH_E);
+
+Ejemplo (PK_URL, XPATH_F, XPATH_C, XPATH_T);
+
+Fundar (FK_nombrePrensa, FK_nombreFundadores);
+
+Poseer (FK_nombrePrensa, FK_nombreRed);
+
+Abarcar (FK_nombrePrensa,FK_NombreCat);
+
+Cubrir (FK_tipo, FK_nombrePrensa);
