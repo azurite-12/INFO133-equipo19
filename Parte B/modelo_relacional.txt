@@ -1,0 +1,15 @@
+Pais (PK_nombreP);
+
+Bienestar (PK_año, FK_nombreP, ingreso, gastos, total);
+
+Región (PK_codigoR, FK_nombreP, codigoR);
+
+Comuna (PK_codigoC, idh, habitantes, calidadVida, superficie, alcalde, nombreC, provincia, seguridad, laboral, transporte);
+
+lugar_Clave (PK_ubicacion, nombreL, tipoL, rama);
+
+Poseer (FK_codigoR, FK_codigoC);
+
+Contener (FK_ubicacionL, FK_codigoC);
+
+Dividir (FK_nombreP, FK_codigoR);

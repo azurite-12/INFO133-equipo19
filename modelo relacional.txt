@@ -1,4 +1,4 @@
-Prensa (PK_nombrePrensa, FK_ejemploURL sitio_web, fundación);
+Prensa (PK_nombrePrensa, FK_ejemploURL, sitio_web, fundación);
 
 Fundador (PK_nombreFundadores);
 
