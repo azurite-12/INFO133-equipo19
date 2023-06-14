@@ -1,4 +1,4 @@
-Base de datos de prensa Nicaragüense
+Base de datos de prensa Nicaragüense e Información territorial de comunas de Chile
 ==============
 
 Integrantes:
