@@ -1,4 +1,4 @@
-Base de datos de prensa Nicaragüense e Información territorial de comunas de Chile
+Información territorial de comunas de Chile
 ==============
 
 Integrantes:
@@ -9,10 +9,14 @@ Integrantes:
 
 (Grupo 19).
 
-Descripción
+Descripción General
 ==============
 
 Trabajo de modelamiento y estructuración de base de datos para la asignatura Base de Datos (INFO133), para la Universidad Austral de Chile. Junio 2023.
 
 
-Profesor: Matthieu Vernier.
+Profesores: Matthieu Vernier, Luis Veas.
+
+Descripción
+==============
+Motor de base de datos que estamos usando: MariaDB 11.1
