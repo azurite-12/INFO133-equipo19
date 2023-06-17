@@ -1,0 +1,13 @@
+Pais (PK_nombreP);
+
+Región (PK_codigoR, FK_nombreP, nombreR);
+
+Comuna (PK_codigoC, nombreC, provincia, alcalde);
+
+lugar_Clave (PK_ubicacion, FK_codigoC, nombreL, tipoL, categoria);
+
+Indicador (PK_nombreI, descripcion);
+
+Poseer (PK(FK_codigoR, FK_codigoC));
+
+tener_Valor (PK(FK_codigoC, FK_nombreI), fecha, total);
