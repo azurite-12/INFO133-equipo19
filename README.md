@@ -20,3 +20,4 @@ Profesores: Matthieu Vernier, Luis Veas.
 Descripción
 ==============
 Motor de base de datos que estamos usando: MariaDB 11.1
+Informe: https://docs.google.com/document/d/1q7Fvd-f25jY9D2R382Szl1QuvuBW5_Wr68vw1K1lWxg/edit?usp=sharing
