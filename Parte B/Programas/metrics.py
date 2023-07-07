@@ -161,6 +161,7 @@ for j in range(0, len(tasa_individual), 1):
     print(" - "+str(j+1)+".- "+comuna_seg[j]+" de la "+region_seg[j]+"a region, con tasa de "
           +str(tasa_individual[j])+" cada cien mil habitantes.")
 
+
 #SENTENCIA 5
 df = pd.read_csv(r"..\INFO133-equipo19\Parte B\Datos\pob\14losrios.csv")
 
@@ -170,15 +171,7 @@ print(personasOrdenadas)
 
 
 #SENTENCIA 7
-path = r'..\INFO133-equipo19\Parte B\Datos\pob'
-archivos = glob.glob(os.path.join(path , "*.csv"))
-
-li = []
-for nombreArchivo in archivos:
-    df = pd.read_csv(nombreArchivo, index_col=None, header=0)
-    li.append(df)
-
-bigFrame = pd.concat(li, axis=0, ignore_index=True)
+bigFrame = pd.read_csv(r"..\INFO133-equipo19\Parte B\Datos\pob.csv")
 
 comunasOrdenadas = bigFrame.sort_values(by='Personas Desocupadas', ascending=False)
 print("Comunas ordenadas por desempleo: ")
