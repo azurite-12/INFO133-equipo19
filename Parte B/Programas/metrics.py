@@ -162,7 +162,7 @@ for j in range(0, len(tasa_individual), 1):
           +str(tasa_individual[j])+" cada cien mil habitantes.")
 
 #SENTENCIA 5
-df = pd.read_csv(r"C:\Users\diego\.vscode\INFO133_2023\INFO133-equipo19\Parte B\Datos\pob\14losrios.csv")
+df = pd.read_csv(r"..\INFO133-equipo19\Parte B\Datos\pob\14losrios.csv")
 
 personasOrdenadas = df.sort_values(by='Población en Edad de Trabajar', ascending=True)
 print("Comunas ordenadas en base a la población en edad de trabajar: ")
@@ -170,7 +170,7 @@ print(personasOrdenadas)
 
 
 #SENTENCIA 7
-path = r'C:\Users\diego\.vscode\INFO133_2023\INFO133-equipo19\Parte B\Datos\pob'
+path = r'..\INFO133-equipo19\Parte B\Datos\pob'
 archivos = glob.glob(os.path.join(path , "*.csv"))
 
 li = []
