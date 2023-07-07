@@ -1,15 +1,26 @@
+import pandas as pd
+import os
+import glob
 import csv
+
 #SENTENCIAS 1, 2, 13 y 14
 tasa_total=[]
 comunas_por_region=[]
 tasa_individual=[]
 comuna_seg=[]
 region_seg=[]
+R_comuna =[]
+
+directorioActual = os.path.dirname(os.path.abspath(__file__))
+rel_pat1 = '../Datos/TablaSeguridad.csv'
+rel_pat2 = '../Datos/tablaidh_.csv'
+archivo1 = os.path.join(directorioActual, rel_pat1)
+archivo2 = os.path.join(directorioActual, rel_pat2)
 
 for i in range(0,16,1):
     tasa_total.append(0)
     comunas_por_region.append(0)
-with open('TablaSeguridad.csv', encoding='utf8') as File:  
+with open(archivo1, encoding='utf8') as File:  
     reader = csv.reader(File)
     bandera=False
     for row in reader:
@@ -72,7 +83,7 @@ CPR=[]
 IDH_Max=[]
 Comuna_Max=[]
 
-with open('tablaidh_.csv',encoding='utf8') as Archivo:
+with open(archivo2,encoding='utf8') as Archivo:
     reader=csv.reader(Archivo, quoting=csv.QUOTE_MINIMAL)
     test=False
     for row in reader:
@@ -149,3 +160,47 @@ print("14) Lista de comunas segun tasa de seguridad mas su region:")
 for j in range(0, len(tasa_individual), 1):
     print(" - "+str(j+1)+".- "+comuna_seg[j]+" de la "+region_seg[j]+"a region, con tasa de "
           +str(tasa_individual[j])+" cada cien mil habitantes.")
+
+#SENTENCIA 5
+df = pd.read_csv(r"C:\Users\diego\.vscode\INFO133_2023\INFO133-equipo19\Parte B\Datos\pob\14losrios.csv")
+
+personasOrdenadas = df.sort_values(by='Población en Edad de Trabajar', ascending=True)
+print("Comunas ordenadas en base a la población en edad de trabajar: ")
+print(personasOrdenadas)
+
+
+#SENTENCIA 7
+path = r'C:\Users\diego\.vscode\INFO133_2023\INFO133-equipo19\Parte B\Datos\pob'
+archivos = glob.glob(os.path.join(path , "*.csv"))
+
+li = []
+for nombreArchivo in archivos:
+    df = pd.read_csv(nombreArchivo, index_col=None, header=0)
+    li.append(df)
+
+bigFrame = pd.concat(li, axis=0, ignore_index=True)
+
+comunasOrdenadas = bigFrame.sort_values(by='Personas Desocupadas', ascending=False)
+print("Comunas ordenadas por desempleo: ")
+print(comunasOrdenadas)
+
+
+#SENTENCIA 6
+print("comuna con más desempleo: ", comunasOrdenadas.iat[1,0])
+
+
+#SENTENCIA 8
+comOrdenadasPob = bigFrame.sort_values(by='Población Total', ascending=False)
+print("Población total: ")
+print(comOrdenadasPob)
+
+
+bigFrame['Igualdad Laboral'] = bigFrame['Hombres Ocupados'] - bigFrame['Mujeres Ocupadas']
+
+#SENTENCIA 9. Se muestra de orden descendiente las comunas con mayor igualdad laboral. Si es positivo, hay más hombres que mujerees trabajando.
+print ("Igualdad de genero: ")
+print(bigFrame.sort_values(by='Igualdad Laboral', ascending=True))
+
+#SENTENCIA 10. Se muestra de orden descendiente las comunas con menor igualdad laboral. Si es positivo, hay más hombres que mujerees trabajando.
+print("Desigualdad de género: ")
+print(bigFrame.sort_values(by='Igualdad Laboral', ascending=False))
