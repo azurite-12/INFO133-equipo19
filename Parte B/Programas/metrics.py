@@ -161,20 +161,6 @@ for j in range(0, len(tasa_individual), 1):
     print(" - "+str(j+1)+".- "+comuna_seg[j]+" de la "+region_seg[j]+"a region, con tasa de "
           +str(tasa_individual[j])+" cada cien mil habitantes.")
 
-#print("\nÍndice de bienestar por comuna: ")
-#bienestar=[]
-#for i in range(0,len(IDH),1):
-#    a=0
-#    while(a<len(IDH))and(N_comuna[i]!=comuna_seg[a]):
-#        a+=1
-#    be=0.0
-#    if (a>=len(IDH))or(tasa_individual[a]<=0.0):
-#        print(N_comuna[i]+": No hay informacion suficiente.")
-#    else:
-#        be=1000.0*IDH[i]/tasa_individual[a]
-#        print(N_comuna[i]+": "+str(be))
-#    bienestar.append(be)
-
 print()
 
 #SENTENCIA 5
@@ -228,8 +214,22 @@ for i in range(0,len(IDH),1):
         j+=1
     if (j<len(bigFrame))and(bigFrame.iat[j,1]>0):
         be+=IDH[i]*(float((bigFrame.iat[j,3])/bigFrame.iat[j,2]))
-    if be!=0.0:
-        print(N_comuna[i]+": "+str(be))
-    else:
-        print(N_comuna[i]+": No hay suficiente informacion.")
     bienestar.append(be)    
+print()
+
+N_bienestar=N_comuna
+for i in range(1, len(bienestar)):#Se uso InsertionSort de nuevo
+        bst = bienestar[i]
+        nbe = N_bienestar[i]
+        w = i-1
+        while w >= 0 and bst > bienestar[w] : 
+                bienestar[w+1] = bienestar[w]
+                N_bienestar[w+1] = N_bienestar[w]
+                w -= 1
+        bienestar[w+1] = bst
+        N_bienestar[w+1] = nbe
+for j in range(1, len(bienestar)):
+    if(bienestar[j]!=0.0):
+        print(N_bienestar[j]+": "+str(bienestar[j]))
+    else:
+        print(N_bienestar[j]+": No hay informacion suficiente.")
