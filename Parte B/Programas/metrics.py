@@ -161,6 +161,21 @@ for j in range(0, len(tasa_individual), 1):
     print(" - "+str(j+1)+".- "+comuna_seg[j]+" de la "+region_seg[j]+"a region, con tasa de "
           +str(tasa_individual[j])+" cada cien mil habitantes.")
 
+#print("\nÍndice de bienestar por comuna: ")
+#bienestar=[]
+#for i in range(0,len(IDH),1):
+#    a=0
+#    while(a<len(IDH))and(N_comuna[i]!=comuna_seg[a]):
+#        a+=1
+#    be=0.0
+#    if (a>=len(IDH))or(tasa_individual[a]<=0.0):
+#        print(N_comuna[i]+": No hay informacion suficiente.")
+#    else:
+#        be=1000.0*IDH[i]/tasa_individual[a]
+#        print(N_comuna[i]+": "+str(be))
+#    bienestar.append(be)
+
+print()
 
 #SENTENCIA 5
 df = pd.read_csv(r"..\INFO133-equipo19\Parte B\Datos\pob\14losrios.csv")
@@ -197,3 +212,24 @@ print(bigFrame.sort_values(by='Igualdad Laboral', ascending=True))
 #SENTENCIA 10. Se muestra de orden descendiente las comunas con menor igualdad laboral. Si es positivo, hay más hombres que mujerees trabajando.
 print("Desigualdad de género: ")
 print(bigFrame.sort_values(by='Igualdad Laboral', ascending=False))
+
+
+print("\nÍndice de bienestar por comuna: ")
+bienestar=[]
+for i in range(0,len(IDH),1):
+    a=0
+    while(a<len(IDH))and(N_comuna[i]!=comuna_seg[a]):
+        a+=1
+    be=0.0
+    if (a<len(IDH))and(tasa_individual[a]>0.0):
+        be=100.0*IDH[i]/tasa_individual[a]
+    j = 1
+    while (j<len(bigFrame))and(N_comuna[i]!=bigFrame.iat[j,0]):
+        j+=1
+    if (j<len(bigFrame))and(bigFrame.iat[j,1]>0):
+        be+=IDH[i]*(float((bigFrame.iat[j,3])/bigFrame.iat[j,2]))
+    if be!=0.0:
+        print(N_comuna[i]+": "+str(be))
+    else:
+        print(N_comuna[i]+": No hay suficiente informacion.")
+    bienestar.append(be)    
