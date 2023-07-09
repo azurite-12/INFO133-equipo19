@@ -168,6 +168,7 @@ print()
 
 #SENTENCIA 5
 df = pd.read_csv(r"..\Datos\pob\14losrios.csv")
+#Hay un problema con esta ruta. Al abrir el repositorio con VSCode, esto no funciona, sin embargo, si se abre solo este archivo, si funciona.
 
 personasOrdenadas = df.sort_values(by='Población en Edad de Trabajar', ascending=True)
 print("Comunas ordenadas en base a la población en edad de trabajar: ")
