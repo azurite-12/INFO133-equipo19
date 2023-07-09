@@ -39,8 +39,10 @@ mas_segura=1
 min_seguridad=0
 menos_segura=0
 CMS=[]
+tasa_promedio=0.0
 
 for j in range(0,16,1):#Responde 1 y 2
+    tasa_promedio+=tasa_total[i]
     tasa_total[j]=tasa_total[j]/comunas_por_region[j]
     if tasa_total[j]<max_seguridad:
         max_seguridad=tasa_total[j]
@@ -49,6 +51,7 @@ for j in range(0,16,1):#Responde 1 y 2
         min_seguridad=tasa_total[j]
         menos_segura=j+1
     CMS.append(-1)
+tasa_promedio=tasa_promedio/len(comuna_seg)
     
 for k in range(0,len(tasa_individual),1):#Responde 13
     L=int(region_seg[k])-1
@@ -199,8 +202,6 @@ print(bigFrame.sort_values(by='Igualdad Laboral', ascending=True))
 print("Desigualdad de género: ")
 print(bigFrame.sort_values(by='Igualdad Laboral', ascending=False))
 
-
-print("\nÍndice de bienestar por comuna: ")
 bienestar=[]
 for i in range(0,len(IDH),1):
     a=0
@@ -208,15 +209,15 @@ for i in range(0,len(IDH),1):
         a+=1
     be=0.0
     if (a<len(IDH))and(tasa_individual[a]>0.0):
-        be=100.0*IDH[i]/tasa_individual[a]
+        be=tasa_promedio/tasa_individual[a]
     j = 1
     while (j<len(bigFrame))and(N_comuna[i]!=bigFrame.iat[j,0]):
         j+=1
     if (j<len(bigFrame))and(bigFrame.iat[j,1]>0):
-        be+=IDH[i]*(float((bigFrame.iat[j,3])/bigFrame.iat[j,2]))
+        be+=(float((bigFrame.iat[j,3])/bigFrame.iat[j,2]))
+    be+=IDH[i]
     bienestar.append(be)    
-print()
-
+print("\nÍndice de bienestar por comuna: ")
 N_bienestar=N_comuna
 for i in range(1, len(bienestar)):#Se uso InsertionSort de nuevo
         bst = bienestar[i]
